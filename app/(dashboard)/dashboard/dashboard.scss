@@ -1,0 +1,39 @@
+@use "../../../styles/mixin" as *;
+@use "../../../styles/variables" as *;
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background: #fcfbf9;
+  position: relative;
+
+  &__main {
+    height: 100%;
+    overflow: auto;
+    flex: 1;
+    min-width: 0;
+    padding: 4rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__content {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+  }
+
+  @include respond(md) {
+    flex-direction: column;
+
+    &__main {
+      padding: 7rem 2.4rem 2.4rem 2.4rem;
+      // padding-top: 6rem;
+    }
+  }
+
+  @include respond(sm) {
+    &__main {
+      padding: 1.6rem;
+    }
+  }
+}

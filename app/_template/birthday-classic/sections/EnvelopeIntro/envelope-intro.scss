@@ -1,0 +1,245 @@
+@use "../../../../../styles/mixin.scss" as *;
+@use "../../../../../styles/variables" as *;
+
+$black: #0a0a0a;
+$black-deep: #060606;
+$paper: #f2ede2;
+$paper-warm: #e9e2d2;
+$paper-shadow: #8a8272;
+$white: #f7f5f0;
+$ink: #d8d3c6;
+$line: rgba(247, 245, 240, 0.14);
+$line-soft: rgba(247, 245, 240, 0.08);
+
+
+// ---- Spacing ----
+$gutter: clamp(1.25rem, 5vw, 4rem);
+
+// ---- Easing ----
+$ease-out-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out-cinema: cubic-bezier(0.65, 0, 0.35, 1);
+
+.envelope {
+  &-wrapper {
+    position: relative;
+    height: 320vh;
+    background: var(--color-black);
+  }
+
+  &-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-black);
+  }
+
+  &-scene {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //   background: white;
+
+    .scene {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include respond(mds) {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  &-label {
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    // font-family: $font-display;
+    // font-style: italic;
+    font-weight: 300;
+    // font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+    font-size: 1.5rem;
+    color: var(--color-ink);
+    // letter-spacing: 0.02em;
+    z-index: 5;
+
+    @include respond(mds) {
+      top: 10%;
+    }
+  }
+}
+
+// paper — centred in the sticky viewport, sized via motion values so it can
+// grow from envelope-sized to full-viewport without being clipped by a small stage
+.paper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  background: var(--color-paper);
+  //   background: white;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paperContent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem 4rem;
+
+  @include respond(md) {
+    padding: 2rem;
+  }
+}
+
+.paperEyebrow {
+  // font-family: $font-body;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-paper-warm);
+  //   background-color: white;
+  white-space: nowrap;
+}
+
+.paperWord {
+  // font-family: $font-display;
+  font-weight: 300;
+  // font-style: italic;
+  // font-size: clamp(1.6rem, 5vw, 3.4rem);
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: var(--color-white);
+  max-width: 95rem;
+
+  @include respond(mds) {
+    font-size: 2rem;
+  }
+}
+
+// envelope body — same footprint/position as the paper's starting size, sits above it
+.envelopeStage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 40vw;
+  height: 45vh;
+  z-index: 3;
+  pointer-events: none;
+  perspective: 1200px;
+
+  @include respond(mdl) {
+    width: 60vw;
+    height: 45vh;
+  }
+
+  // @include respond(md) {
+  //   width: 60vw;
+  //   height: 45vh;
+  // }
+
+  @include respond(mds) {
+    width: 70vw;
+    height: 30vh;
+  }
+
+  @include respond(sm) {
+  }
+}
+
+.envelopePocket {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, #18160f 0%, #0e0d0a 100%);
+  clip-path: polygon(0 100%, 0 22%, 50% 58%, 100% 22%, 100% 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.envelopeOutline {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border: 1px solid rgba(247, 245, 240, 0.1);
+  pointer-events: none;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58%;
+  background: linear-gradient(160deg, #1e1b14 0%, #100f0b 100%);
+  //   clip-path: polygon(0 0, 100% 0, 50% 100%);
+  //   clip-path: polygon(0 0%, 100% 0%, 100% 22%, 50% 95%, 0% 20%);
+  clip-path: polygon(0 0%, 100% 0%, 100% 35%, 50% 98%, 0% 35%);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 5;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.flap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 1px solid rgba(247, 245, 240, 0.08);
+}
+
+.hint {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 6;
+}
+
+.hintLine {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, transparent, $paper-shadow);
+  animation: hintPulse 2.2s ease-in-out infinite;
+}
+
+.hintText {
+  // font-family: $font-body;
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-paper-shadow);
+}
+
+@keyframes hintPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

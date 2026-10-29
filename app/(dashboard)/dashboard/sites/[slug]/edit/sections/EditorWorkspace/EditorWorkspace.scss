@@ -1,0 +1,259 @@
+
+@use "../../../../../../../../styles/mixin" as *;
+@use "../../../../../../../../styles/variables" as *;
+
+.editor-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  background: #f5f5f4;
+
+  &__panel {
+    padding: 2.4rem;
+    border-bottom: 0.1rem solid #e7e5e4;
+    background: #fff;
+  }
+
+  &__panel-header {
+    margin-bottom: 2.4rem;
+  }
+
+  &__eyebrow,
+  &__preview-label {
+    display: block;
+    color: #a8a29e;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.12rem;
+  }
+
+  &__panel-title {
+    margin: 1rem 0 0.8rem;
+    color: #292524;
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: -0.06rem;
+  }
+
+  &__panel-description {
+    margin: 0;
+    color: #78716c;
+    font-size: 1.4rem;
+    line-height: 1.7;
+  }
+
+  &__section {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.6rem;
+    padding: 1.6rem 0;
+    border-top: 0.1rem solid #f0eeec;
+
+    h3 {
+      margin: 0 0 0.6rem;
+      color: #292524;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      color: #78716c;
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__section-number {
+    display: grid;
+    width: 3.6rem;
+    height: 3.6rem;
+    flex-shrink: 0;
+    place-items: center;
+    border: 0.1rem solid #e7e5e4;
+    border-radius: 1rem;
+    color: #78716c;
+    font-size: 1.2rem;
+  }
+
+  &__preview-area {
+    min-width: 0;
+    padding: 2.4rem;
+  }
+
+  &__preview-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    margin-bottom: 2rem;
+
+    p {
+      margin: 0.6rem 0 0;
+      color: #78716c;
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__preview-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.2rem;
+    padding: 0.9rem 1.6rem;
+    border: 0.1rem solid #292524;
+    border-radius: 0.8rem;
+    background: #292524;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      border-color: #44403c;
+      background: #44403c;
+    }
+
+    &:focus-visible {
+      outline: 0.2rem solid #a8a29e;
+      outline-offset: 0.3rem;
+    }
+  }
+
+  &__preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
+    min-width: 0;
+    padding: 2rem;
+    overflow: hidden;
+    border: 0.1rem solid #e7e5e4;
+    border-radius: 1.4rem;
+    background: #fff;
+    text-align: left;
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border: 0.1rem solid #e7e5e4;
+    border-radius: 1rem;
+    background: #f8f0e8;
+  }
+
+  &__template-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  &__image-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 24rem;
+    padding: 2rem;
+    background: #f8f0e8;
+    text-align: center;
+
+    p {
+      margin: 0;
+      color: #78716c;
+      font-size: 1.4rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__preview-placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 0 0.4rem 0.4rem;
+
+    h2 {
+      margin: 0;
+      color: #292524;
+      font-family: Georgia, serif;
+      font-size: 2.8rem;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    p {
+      max-width: 55rem;
+      margin: 0;
+      color: #78716c;
+      font-size: 1.4rem;
+      line-height: 1.7;
+    }
+  }
+
+  @include respond(md) {
+    &__panel {
+      padding: 2.4rem;
+    }
+
+    &__preview-area {
+      padding: 2rem;
+    }
+
+    &__preview-placeholder {
+      padding: 1.6rem;
+    }
+  }
+
+  @include respond(sm) {
+    &__panel {
+      padding: 2rem 1.6rem;
+    }
+
+    &__panel-header {
+      margin-bottom: 1.6rem;
+    }
+
+    &__section {
+      padding: 1.4rem 0;
+    }
+
+    &__preview-area {
+      padding: 1.6rem 1.2rem;
+    }
+
+    &__preview-toolbar {
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    &__preview-placeholder {
+      gap: 1.8rem;
+      padding: 1.2rem;
+      border-radius: 1rem;
+    }
+
+    &__preview-placeholder-content {
+      h2 {
+        font-size: 2.4rem;
+      }
+    }
+
+    &__preview-link {
+      min-height: 4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__preview-link {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@use "../../../../../styles/mixin" as *;
+@use "../../../../../styles/variables" as *;
+
+.welcome-section {
+  padding: 3.2rem;
+  margin-bottom: 3.2rem;
+  border-radius: 1.6rem;
+  background: #f7f0e9;
+
+  &__eyebrow {
+    margin: 0 0 1rem;
+    color: #8b6552;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+  }
+
+  &__title {
+    max-width: 60rem;
+    margin: 0;
+    color: #292524;
+    font-size: 3.2rem;
+    line-height: 1.2;
+  }
+
+  &__description {
+    max-width: 55rem;
+    margin: 1.4rem 0 2.4rem;
+    color: #57534e;
+    font-size: 1.6rem;
+    line-height: 1.7;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 4.6rem;
+    padding: 0 2rem;
+    border: 0;
+    border-radius: 0.8rem;
+    background: #292524;
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: #57534e;
+    }
+  }
+
+  @include respond(sm) {
+    padding: 2.2rem;
+
+    &__title {
+      font-size: 2.6rem;
+    }
+
+    &__description {
+      font-size: 1.4rem;
+    }
+  }
+}

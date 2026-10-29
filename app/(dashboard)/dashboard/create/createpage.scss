@@ -1,0 +1,63 @@
+// @use "@/styles/variables" as *;
+@use "../../../../styles/mixin.scss" as *;
+@use "../../../../styles/variables.scss" as *;
+
+.create-page {
+  width: 100%;
+//   max-width: 100rem;
+  margin: 0 auto;
+  padding: 3rem 0 6rem;
+
+  &__header {
+    margin-bottom: 4rem;
+  }
+
+  &__eyebrow {
+    margin: 0 0 .5rem;
+    color: var(--color-paper-shadow);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin: 0;
+    color: var(--color-black);
+    font-size: clamp(3.2rem, 4vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-align: left;
+  }
+
+  &__description {
+    max-width: 52rem;
+    margin: 1rem 0 0;
+    color: var(--color-black-light);
+    font-size: 1.6rem;
+    line-height: 1.7;
+  }
+
+  @include respond(md) {
+    padding: 2rem 0 4rem;
+
+    &__header {
+      margin-bottom: 3rem;
+    }
+
+    &__title {
+      font-size: 3.6rem;
+    }
+
+    &__description {
+      font-size: 1.5rem;
+    }
+  }
+
+  @include respond(sm) {
+    &__title {
+      font-size: 3rem;
+    }
+  }
+}

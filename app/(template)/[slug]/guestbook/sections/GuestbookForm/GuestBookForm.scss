@@ -1,0 +1,90 @@
+@use "../../../../../../styles/variables.scss" as *;
+@use "../../../../../../styles/mixin" as *;
+.public-guestbook {
+  &__progress {
+    margin-bottom: 2.4rem;
+    text-align: center;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    text-align: left;
+
+    label {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #494037;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 1.2rem 1.4rem;
+      border: 1px solid #ded4c8;
+      border-radius: 0.8rem;
+      background: #fff;
+      color: #302923;
+      font: inherit;
+      font-size: 1.5rem;
+
+      &:focus {
+        outline: 2px solid #9b7653;
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 14rem;
+    }
+
+    input[type="file"] {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__hint {
+    font-size: 1.2rem !important;
+  }
+
+  &__error {
+    margin-bottom: 1.6rem !important;
+    color: #b42318 !important;
+  }
+
+  &__success {
+    margin-bottom: 1.6rem !important;
+    color: #267044 !important;
+  }
+
+  &__submit {
+    width: 100%;
+    padding: 1.4rem 2rem;
+    border: none;
+    border-radius: 0.8rem;
+    background: #8b6848;
+    color: #fff;
+    font: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: #60452e;
+    }
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+  }
+}

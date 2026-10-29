@@ -1,0 +1,26 @@
+@use "sass:map";
+@use "./variables" as *;
+
+@mixin respond($breakpoint) {
+    $size: map-get($breakpoints, $breakpoint);
+  
+    @if $size {
+      @media (max-width: $size) {
+        @content;
+      }
+    } @else {
+      @warn "⚠️ Breakpoint '#{$breakpoint}' not found in \$breakpoints map.";
+    }
+}
+
+@mixin lgrespond($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+
+  @if $size {
+    @media (min-width: $size) {
+      @content;
+    }
+  } @else {
+    @warn "⚠️ Breakpoint '#{$breakpoint}' not found in \$breakpoints map.";
+  }
+}

@@ -1,0 +1,12 @@
+@use "../../../../../styles/mixin.scss" as *;
+@use "../../../../../styles/variables" as *;
+
+.intro-box {
+  max-width: 85rem;
+  margin: auto;
+
+
+  p {
+    text-align: center;
+  }
+}

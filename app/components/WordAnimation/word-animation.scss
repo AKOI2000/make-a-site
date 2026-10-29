@@ -1,0 +1,35 @@
+@use "../../../styles/mixin" as *;
+@use "../../../styles/variables" as *;
+
+.word-animation {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1;
+  gap: 1rem;
+  font-size: 4rem;
+  padding: 0 3rem;
+
+  @include respond(mds) {
+    font-size: 3rem;
+    gap: 1rem;
+  }
+
+  @include respond (sm) {
+    font-size: 2.8rem;
+    gap: .8rem;
+  }
+
+  &.centre {
+    justify-content: center;
+  }
+
+  .word {
+    position: relative;
+    margin-top: 1.2rem;
+
+    .shadow {
+      position: absolute;
+      opacity: 0.1;
+    }
+  }
+}

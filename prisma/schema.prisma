@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+  runtime  = "cloudflare"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum GiftWebsiteStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum GiftAssetStatus {
+  PENDING
+  READY
+}
+
+enum GiftGuestbookStatus {
+  OPEN
+  CLOSED
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts Account[]
+  sessions Session[]
+  websites GiftWebsite[]
+  assets   GiftAsset[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model GiftWebsite {
+  id              String            @id @default(cuid())
+  ownerId         String
+  title           String
+  slug            String            @unique
+  occasionType    String            @default("BIRTHDAY")
+  templateId      String            @default("birthday-classic")
+  templateVersion Int               @default(1)
+  status          GiftWebsiteStatus @default(DRAFT)
+
+  // Personalised messages, wishes, captions and other content.
+  content Json
+
+  // Section visibility and ordering, not visual styling.
+  sections Json
+
+  assetCount     Int     @default(0)
+  guestbookEmail String?
+
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  owner     User           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  assets    GiftAsset[]
+  guestbook GiftGuestbook?
+
+  @@index([ownerId])
+  @@index([ownerId, status])
+}
+
+model GiftAsset {
+  id        String @id @default(cuid())
+  ownerId   String
+  websiteId String
+  sectionId String
+
+  // Storage reference, not the image file itself.
+  storageKey String          @unique
+  altText    String?
+  caption    String?
+  sortOrder  Int             @default(0)
+  createdAt  DateTime        @default(now())
+  status     GiftAssetStatus @default(PENDING)
+  updatedAt  DateTime        @updatedAt
+
+  owner   User        @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  website GiftWebsite @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId])
+  @@index([websiteId, sectionId, sortOrder])
+}
+
+model GiftGuestbook {
+  id          String              @id @default(cuid())
+  websiteId   String              @unique
+  status      GiftGuestbookStatus @default(CLOSED)
+  wishCount   Int                 @default(0)
+  roundNumber Int                 @default(1)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  website GiftWebsite @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  wishes  GiftWish[]
+
+  @@index([websiteId, status])
+}
+
+
+model GiftWish {
+  id          String   @id @default(cuid())
+  guestbookId String
+  roundNumber Int
+  visitorId   String
+  guestName   String
+  message     String
+  photoKey    String?  @unique
+  createdAt   DateTime @default(now())
+
+  guestbook GiftGuestbook @relation(fields: [guestbookId], references: [id], onDelete: Cascade)
+
+  @@unique([guestbookId, roundNumber, visitorId])
+  @@index([guestbookId, roundNumber, createdAt])
+}
+

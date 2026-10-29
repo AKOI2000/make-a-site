@@ -1,0 +1,125 @@
+@use "../../../../styles/variables.scss" as *;
+@use "../../../../styles/mixin" as *;
+
+.public-guestbook {
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #faf8f5;
+  color: #302923;
+
+  &__header {
+    width: 100%;
+    max-width: 62rem;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: #9b7653;
+  }
+
+  h1 {
+    margin: 0 0 1.6rem;
+    font-size: clamp(3.2rem, 6vw, 5.6rem);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  &__header > p:last-child {
+    max-width: 48rem;
+    margin: 0 auto;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: #756b62;
+  }
+
+  &__notice,
+  &__form {
+    width: 100%;
+    max-width: 54rem;
+    padding: 3.2rem;
+    border: 1px solid #e8ded2;
+    border-radius: 1.6rem;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 1rem 3rem rgb(48 41 35 / 4%);
+
+    h2 {
+      margin: 0 0 1.2rem;
+      font-size: 2.4rem;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.5rem;
+      line-height: 1.7;
+      color: #756b62;
+
+      & + p {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: 3.2rem;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      font-size: 1.4rem;
+      color: #8b6848;
+      text-decoration: underline;
+      text-underline-offset: 0.4rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #60452e;
+      }
+
+      &:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .public-guestbook {
+    padding: 4rem 1.6rem;
+
+    &__header {
+      margin-bottom: 3rem;
+    }
+
+    &__eyebrow {
+      font-size: 1rem;
+    }
+
+    &__header > p:last-child {
+      font-size: 1.4rem;
+    }
+
+    &__notice,
+    &__form {
+      padding: 2.4rem 1.8rem;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

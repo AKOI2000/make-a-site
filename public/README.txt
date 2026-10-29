@@ -1,0 +1,1 @@
+Image files in this folder are neutral generated placeholders. Replace them with images the gift creator has permission to use. Do not restore personal photographs from the original birthday project as public defaults.

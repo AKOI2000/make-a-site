@@ -1,0 +1,68 @@
+@use "../../../../../styles/mixin" as *;
+@use "../../../../../styles/variables" as *;
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3.2rem;
+
+  &__title {
+    margin: 0;
+    color: #292524;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  &__description {
+    margin: 0.8rem 0 0;
+    color: #78716c;
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    display: grid;
+    width: 4.2rem;
+    height: 4.2rem;
+    place-items: center;
+    border-radius: 50%;
+    background: #f5f0eb;
+    color: #292524;
+    font-size: 1.6rem;
+    font-weight: 600;
+    object-fit: cover;
+
+    &--fallback {
+      border: 0.1rem solid #eee7e1;
+    }
+  }
+
+  @include respond(sm) {
+    align-items: flex-start;
+    gap: 1.2rem;
+
+    &__title {
+      font-size: 2.4rem;
+    }
+
+    &__description {
+      font-size: 1.4rem;
+    }
+
+    &__avatar {
+      width: 3.8rem;
+      height: 3.8rem;
+    }
+  }
+}
+

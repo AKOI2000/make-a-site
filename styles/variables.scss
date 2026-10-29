@@ -1,0 +1,36 @@
+$breakpoints: (
+  xs: 360px,
+  smd: 400px,
+  sm: 480px,
+  mds: 608px,
+  mdm: 650px,
+  md: 768px,
+  mdl: 880px,
+  mdxl: 950px,
+  lg: 1024px,
+  lg1: 1025px,
+  xl: 1280px,
+  xxl: 1440px,
+  xxxl: 2000px
+);
+
+:root {
+  // --- Color: two colours + one grey, per spec ---
+  --color-black-light: #1c1c1c; // placeholder tone — swap to taste later
+  --color-black: #0a0a0a;
+  --color-black-deep: #060606;
+  --color-paper: #f2ede2;
+  --color-paper-warm: #e9e2d2;
+  --color-paper-shadow: #8a8272;
+  --color-white: #f7f5f0;
+  --color-ink: #d8d3c6;
+  --color-line: rgba(247, 245, 240, 0.14);
+  --color-line-soft: rgba(247, 245, 240, 0.08);
+
+  // ---- Spacing ----
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+
+  // ---- Easing ----
+  --ease-out-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cinema: cubic-bezier(0.65, 0, 0.35, 1);
+}

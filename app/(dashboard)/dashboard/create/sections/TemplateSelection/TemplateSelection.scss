@@ -1,0 +1,183 @@
+@use "../../../../../../styles//mixin.scss" as *;
+@use "../../../../../../styles/variables.scss" as *;
+
+.template-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    h2 {
+      margin: 0;
+      color: #222;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      color: #777;
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.template-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+  padding: 1.2rem;
+  border: 0.1rem solid #dedede;
+  border-radius: 1rem;
+  background: #fff;
+  color: #222;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: #999;
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid #555;
+    outline-offset: 0.3rem;
+  }
+
+  &--selected {
+    border-color: #222;
+    box-shadow: 0 0 0 0.1rem #222;
+  }
+
+  &__preview {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+
+    &-image {
+      object-fit: cover;
+    }
+  }
+
+  &__occasion {
+    color: #777;
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+  }
+
+  &__preview-title {
+    max-width: 20rem;
+    color: #222;
+    font-family: Georgia, serif;
+    font-size: 2.4rem;
+    line-height: 1.2;
+  }
+
+  &__preview-caption {
+    color: #777;
+    font-size: 1.1rem;
+  }
+
+  &__preview-label {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.4rem;
+    background: rgba(255, 255, 255, 0.85);
+    color: #444;
+    font-size: 1rem;
+  }
+
+  &__details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      color: #777;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__radio {
+    display: grid;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.1rem;
+    place-items: center;
+    border: 0.1rem solid #bbb;
+    border-radius: 50%;
+  }
+
+  &--selected &__radio {
+    border-color: #222;
+  }
+
+  &__radio-dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #222;
+  }
+
+  &__status {
+    align-self: flex-start;
+    color: #555;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  @include respond(md) {
+    &__preview {
+      min-height: 18rem;
+      padding: 1.4rem;
+    }
+
+    &__preview-title {
+      font-size: 2rem;
+    }
+  }
+
+  @include respond(mds) {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__preview {
+      min-height: 22rem;
+    }
+  }
+}
