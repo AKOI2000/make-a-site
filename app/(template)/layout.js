@@ -6,5 +6,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return <main>{children}</main>;
+  return (
+    <html lang="en" className={`${author.variable} ${britney.variable}`}>
+      <main>{children}</main>
+    </html>
+  );
 }

@@ -4,6 +4,11 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-21",
   "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "R2_BUCKET_NAME": "make-a-site-assets",
+    "R2_ENDPOINT": "https://957cdfd25cef25927ac1a399ebd3b32f.r2.cloudflarestorage.com",
+    "R2_ACCOUNT_ID": "957cdfd25cef25927ac1a399ebd3b32f",
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
@@ -17,10 +22,18 @@
   "observability": {
     "enabled": true,
   },
+  "images": {
+    "binding": "IMAGES",
+  },
   "r2_buckets": [
     {
       "bucket_name": "make-a-site-cache",
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "remote": true,
+    },
+    {
+      "bucket_name": "make-a-site-assets",
+      "binding": "R2_ASSETS",
       "remote": true,
     },
   ],
